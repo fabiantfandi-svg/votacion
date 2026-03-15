@@ -1,0 +1,44 @@
+### 1. Registrar un nuevo usuario (Votante)
+POST http://127.0.0.1:8000/api/auth/registro/
+Content-Type: application/json
+
+{
+    "email" : "votante1@ejemplo.com",
+    "password" : "password123"
+}
+
+### 2. Iniciar sesión para obtener el Token (Guárdalo para las siguientes pruebas)
+POST http://127.0.0.1:8000/api/auth/login/
+Content-Type: application/json
+
+{
+    "email" : "votante1@ejemplo.com",
+    "password" : "password123"
+}
+
+### 3. Emitir un Voto (POST) - REQUIERE TOKEN
+POST http://127.0.0.1:8000/api/votos/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyZGZiOGEzOGI1MmQ5ZjA5ZWRjYWE1MDcwYTBlOGYwYTllMDk4YmEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdm90YWNpb25lcy02NWIzOSIsImF1ZCI6InZvdGFjaW9uZXMtNjViMzkiLCJhdXRoX3RpbWUiOjE3NzM1NDExMjMsInVzZXJfaWQiOiJZa0IzTTdNYTVtWDloNTlZNWFiWnpWNm9OSzQyIiwic3ViIjoiWWtCM003TWE1bVg5aDU5WTVhYlp6VjZvTks0MiIsImlhdCI6MTc3MzU0MTEyMywiZXhwIjoxNzczNTQ0NzIzLCJlbWFpbCI6InZvdGFudGUxQGVqZW1wbG8uY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInZvdGFudGUxQGVqZW1wbG8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.vEE_rCnIfdRsRmaFIkRdo78-95Uq2WIr-aDKsPzqyNl4t8u6tulJrYxmF-MZxZogIN6C8d6uf6N0ay5bJ6xAfm_STN2cmGGnIJ_wzlOq3lrJz_P_u42f8fu7Ee3ItETOxwc78vTvK7nHJ2_DZ65eMZe75hBQ9k6pJ_L-gOnjBkc38UBkaac-8rCKqMeRk5XL-pdWBW7aUh2jAemvbk_U8SPso_YOLAUya5Vku58k1d6gUGGUVAKpy-hWn38yMNHT55quzO8wzd5S3642a-i2PddL7RhpliM2O6KT6lWNF0iK_tHZH0ryl1baASOFKExpIvKBQJvxRbJ_0mVCAMsC_g
+
+{
+    "candidato_id": "CAND-001",
+    "mesa_id": "MESA-05",
+    "comentario": "Voto emitido con seguridad"
+}
+
+### 4. Consultar mis votos (GET) - REQUIERE TOKEN
+GET http://127.0.0.1:8000/api/votos/
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyZGZiOGEzOGI1MmQ5ZjA5ZWRjYWE1MDcwYTBlOGYwYTllMDk4YmEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdm90YWNpb25lcy02NWIzOSIsImF1ZCI6InZvdGFjaW9uZXMtNjViMzkiLCJhdXRoX3RpbWUiOjE3NzM1NDExMjMsInVzZXJfaWQiOiJZa0IzTTdNYTVtWDloNTlZNWFiWnpWNm9OSzQyIiwic3ViIjoiWWtCM003TWE1bVg5aDU5WTVhYlp6VjZvTks0MiIsImlhdCI6MTc3MzU0MTEyMywiZXhwIjoxNzczNTQ0NzIzLCJlbWFpbCI6InZvdGFudGUxQGVqZW1wbG8uY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInZvdGFudGUxQGVqZW1wbG8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.vEE_rCnIfdRsRmaFIkRdo78-95Uq2WIr-aDKsPzqyNl4t8u6tulJrYxmF-MZxZogIN6C8d6uf6N0ay5bJ6xAfm_STN2cmGGnIJ_wzlOq3lrJz_P_u42f8fu7Ee3ItETOxwc78vTvK7nHJ2_DZ65eMZe75hBQ9k6pJ_L-gOnjBkc38UBkaac-8rCKqMeRk5XL-pdWBW7aUh2jAemvbk_U8SPso_YOLAUya5Vku58k1d6gUGGUVAKpy-hWn38yMNHT55quzO8wzd5S3642a-i2PddL7RhpliM2O6KT6lWNF0iK_tHZH0ryl1baASOFKExpIvKBQJvxRbJ_0mVCAMsC_g
+
+### 5. Subir foto de perfil (Cloudinary)
+POST http://127.0.0.1:8000/api/perfil/foto/
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImEyZGZiOGEzOGI1MmQ5ZjA5ZWRjYWE1MDcwYTBlOGYwYTllMDk4YmEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdm90YWNpb25lcy02NWIzOSIsImF1ZCI6InZvdGFjaW9uZXMtNjViMzkiLCJhdXRoX3RpbWUiOjE3NzM1NDExMjMsInVzZXJfaWQiOiJZa0IzTTdNYTVtWDloNTlZNWFiWnpWNm9OSzQyIiwic3ViIjoiWWtCM003TWE1bVg5aDU5WTVhYlp6VjZvTks0MiIsImlhdCI6MTc3MzU0MTEyMywiZXhwIjoxNzczNTQ0NzIzLCJlbWFpbCI6InZvdGFudGUxQGVqZW1wbG8uY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInZvdGFudGUxQGVqZW1wbG8uY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.vEE_rCnIfdRsRmaFIkRdo78-95Uq2WIr-aDKsPzqyNl4t8u6tulJrYxmF-MZxZogIN6C8d6uf6N0ay5bJ6xAfm_STN2cmGGnIJ_wzlOq3lrJz_P_u42f8fu7Ee3ItETOxwc78vTvK7nHJ2_DZ65eMZe75hBQ9k6pJ_L-gOnjBkc38UBkaac-8rCKqMeRk5XL-pdWBW7aUh2jAemvbk_U8SPso_YOLAUya5Vku58k1d6gUGGUVAKpy-hWn38yMNHT55quzO8wzd5S3642a-i2PddL7RhpliM2O6KT6lWNF0iK_tHZH0ryl1baASOFKExpIvKBQJvxRbJ_0mVCAMsC_g
+Content-Type: multipart/form-data; boundary=MiBoundary
+
+--MiBoundary
+Content-Disposition: form-data; name="imagen"; filename="foto.jpg"
+Content-Type: image/jpeg
+
+< ./votaciones/foto.jpg
+--MiBoundary--
