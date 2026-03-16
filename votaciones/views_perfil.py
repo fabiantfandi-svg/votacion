@@ -6,6 +6,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import IsAuthenticated
 from .authentication import FirebaseAuthentication 
 from votacion.firebase_config import initialize_firebase
+from drf_spectacular.utils import extend_schema # Añadido
 
 db = initialize_firebase()
 
@@ -14,6 +15,17 @@ class PerfilImagenAPIView(APIView):
     permission_classes = [IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
 
+    @extend_schema(
+        summary="Actualizar foto de perfil",
+        request={
+            'multipart/form-data': {
+                'type': 'object',
+                'properties': {
+                    'imagen': {'type': 'string', 'format': 'binary'}
+                }
+            }
+        }
+    )
     def post(self, request):
         file_to_upload = request.FILES.get('imagen')
         if not file_to_upload:

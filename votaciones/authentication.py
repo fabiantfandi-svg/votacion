@@ -44,8 +44,8 @@ class FirebaseAuthentication(BaseAuthentication):
             # Vamos a Firestore, a la carpeta 'perfiles' y buscamos el documento con ese ID
             user_profile = db.collection('perfiles').document(uid).get()
             
-            # Sacamos el 'rol'. Si no dice nada, por defecto es 'aprendiz'
-            rol = user_profile.to_dict().get('rol','aprendiz') if user_profile.exists else 'aprendiz'
+            # Sacamos el 'rol'. Si no dice nada, por defecto es 'votante'
+            rol = user_profile.to_dict().get('rol','votante') if user_profile.exists else 'votante'
             
             # 7. Crear el "Brazalete" de acceso (FirebaseUser)
             # Django necesita un objeto 'User' para trabajar. Como no usamos el de Django, 

@@ -1,0 +1,30 @@
+# --- Entorno Virtual ---
+venv/
+env/
+.venv/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Django ---
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# --- Seguridad y Secretos (CRÍTICO) ---
+.env
+votacion/serviceAccountKey.json
+*.json
+!package.json
+
+
+# --- VS Code ---
+.vscode/
+*.code-workspace
+
+# --- SO ---
+.DS_Store
+Thumbs.db
